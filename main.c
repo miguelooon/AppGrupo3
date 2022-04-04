@@ -269,10 +269,46 @@ void Quitar_un_libro(FILE *file){
 };
 
 void Agregar_una_sede(FILE *file){
-
+    
 };
 
 void Quitar_una_sede(FILE *file){
+    
+    char *sede = (char*)malloc( 50 * sizeof(char));;
+    printf("Ingrese el nombre de la sede que quiere eliminar:\n");
+    scanf("%s", sede);
+
+    int i = 0;
+    int encontre = 0;
+    while (i<registryCount && encontre == 0){
+        char *sedeConverted = toLowerC(inven[i].sede);
+        char *sedeToLook = toLowerC(sede);
+        char *ret = strstr(sedeConverted, sedeToLook);
+
+        if(ret && inven[i].borrar == 0){
+            encontre = 1;
+        } else {
+            i++;
+        }
+    }
+
+    if (encontre == 1){
+        printf("La sede tiene libros asociados");
+        printf("A continuacion se muestran los libros que estan asociados:\n");
+        printf("Libro: %s \n", inven[i].titulo);
+        printf("Desea eliminar estos libros para proceder a borrar la sede?\n");
+        char *rta = (char*)malloc(1 * sizeof(char));
+        scanf("%s", rta);
+
+        if (strcmp(toLowerC(rta), "s") == 0){
+            inven[i].borrar = 1;
+            printf("Borrado con los libros asociados y la sede! \n");
+        }
+
+    }
+    else {
+        printf("La sede no existe! \n");
+    }
 
 };
 
@@ -296,6 +332,43 @@ void Agregar_una_seccion(FILE *file){
 };
 
 void Eliminar_una_seccion(FILE *file){
+    char *seccion = (char*)malloc( 50 * sizeof(char));
+    printf("Ingrese la seccion que quiere eliminar \n");
+    scanf("%s", seccion);
+
+    int i = 0;
+    int encontre = 0;
+    while (i<registryCount && encontre == 0){
+        char *seccionConverted1 = toLowerC(inven[i].estante_seccion);
+        char *seccionToLook1 = toLowerC(seccion);
+        char *ret1 = strstr(seccionConverted1, seccionToLook1);
+
+        if(ret1 && inven[i].borrar == 0){
+            encontre = 1;
+        } else {
+            i++;
+        }
+    }
+
+    if (encontre == 1){
+        printf("La seccion tiene libros asociados.\n");
+        printf("A continuacion se muestran los libros que estan asociados:\n\n");
+        printf("Libro: %s \n\n", inven[i].titulo);
+        printf("Desea eliminar estos libros para proceder a borrar la seccion?\n");
+
+
+        char *rta = (char*)malloc(1 * sizeof(char));
+        scanf("%s", rta);
+
+        if (strcmp(toLowerC(rta), "s") == 0){
+            inven[i].borrar = 1;
+            printf("Borrado con los libros asociados y la seccion! \n");
+        }
+
+    }
+    else {
+        printf("La sede no existe! \n");
+    }
 
 };
 
@@ -304,6 +377,41 @@ void Agregar_piso(FILE *file){
 };
 
 void Eliminar_piso(FILE *file){
+    char *piso = (char*)malloc( 50 * sizeof(char));;
+    printf("Ingrese el nombre del piso que quiere eliminar \n");
+    scanf("%s", piso);
+
+    int i = 0;
+    int encontre = 0;
+    while (i<registryCount && encontre == 0){
+        char *pisoConverted = toLowerC(inven[i].piso);
+        char *pisoToLook = toLowerC(piso);
+        char *ret = strstr(pisoConverted, pisoToLook);
+
+        if(ret && inven[i].borrar == 0){
+            encontre = 1;
+        } else {
+            i++;
+        }
+    }
+
+    if (encontre == 1){
+        printf("El piso tiene libros asociados");
+        printf("A continuacion se muestran los libros que se encuentran en los pisos.\n");
+        printf("Libro: %s \n", inven[i].titulo);
+        printf("Desea eliminar estos libros para proceder a borrar el piso?\n");
+        char *rta = (char*)malloc(1 * sizeof(char));
+        scanf("%s", rta);
+
+        if (strcmp(toLowerC(rta), "s") == 0){
+            inven[i].borrar = 1;
+            printf("Borrado los libros asociados al piso y el piso que selecciono! \n");
+        }
+
+    }
+    else {
+        printf("El piso no existe! \n");
+    }
 
 };
 
