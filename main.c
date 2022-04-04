@@ -18,7 +18,7 @@ typedef struct INVENTARIO inventario;
 
 // Declaramos cada void que se utilizara ams adelante
 void Ver_la_base_de_datos(FILE *file);
-void Agregar_libro_nuevo(FILE *file);
+void Agregar_libro_nuevo(char *inven);
 void Quitar_un_libro(FILE *file);
 void Agregar_una_sede(FILE *file);
 void Quitar_una_sede(FILE *file);
@@ -158,6 +158,7 @@ int main(int argc, char *argv[]){
                 break;
             case 2:
                 printf("\n 2");
+                Agregar_libro_nuevo(inven);
                 break;
             case 3:
                 printf("\n 3");
@@ -207,7 +208,59 @@ void Ver_la_base_de_datos(FILE *file){
     printf("Elegiste la opcion 1");
 };
 
-void Agregar_libro_nuevo(FILE *file){
+void Agregar_libro_nuevo(char *inven){
+    inventario *Inventario = (inventario *) malloc(sizeof(inventario));
+    printf("Ingrese el id \n");
+    int id;
+    scanf("%d", &id);
+    Inventario->id = id;
+
+    char tokenn = (char*)malloc( 50 * sizeof(char));
+    printf("Ingrese el titulo \n");
+    scanf("%s", &tokenn);
+    Inventario->titulo = (char*)malloc(strlen(tokenn)* sizeof(char));
+    strcpy(Inventario->titulo, tokenn);
+
+    printf("Ingrese el autor \n");
+    scanf("%s", &tokenn);
+    Inventario->autor = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->autor, tokenn);
+
+    printf("Ingrese el año \n");
+    scanf("%s", &tokenn);
+    Inventario->anio = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->anio, tokenn);
+
+    printf("Ingrese el número del estante \n");
+    scanf("%s", &tokenn);
+    Inventario->estante_numero = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->estante_numero, tokenn);
+
+    printf("Ingrese la sección del estante \n");
+    scanf("%s", &tokenn);
+    Inventario->estante_seccion = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->estante_seccion, tokenn);
+
+    printf("Ingrese el piso \n");
+    scanf("%s", &tokenn);
+    Inventario->piso = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->piso, tokenn);
+
+    printf("Ingrese el edificio \n");
+    scanf("%s", &tokenn);
+    Inventario->edificio = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->edificio, tokenn);
+
+    printf("Ingrese la sede \n");
+    scanf("%s", &tokenn);
+    Inventario->sede = (char*)malloc( strlen(tokenn) * sizeof(char));
+    strcpy(Inventario->sede, tokenn);
+
+
+    Inventario = (inventario*) realloc(Inventario, (registryCount+1)*sizeof(Inventario));
+    Inventario[registryCount] = *Inventario;
+    registryCount++;
+    printf("Agregado con exito! \n");
 
 };
 
